@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let timerId;
   let score = 0;
   scoreDisplay.innerHTML = score;
+  const colours = ["orange", "red", "blue", "green", "yellow"];
 
   startPause.addEventListener("click", () => {
     if (timerId) {
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         row.forEach((cell) => {
           squares[cell].classList.remove("stop");
           squares[cell].classList.remove("tetromino");
+          squares[cell].style.backgroundColor = "";
         });
         const rowRemoved = squares.splice(i, width);
         squares = rowRemoved.concat(squares);
@@ -100,11 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function draw() {
     currentTetro.forEach((cell) => {
       squares[currentPosition + cell].classList.add("tetromino");
+      squares[currentPosition + cell].style.backgroundColor = colours[random]; // assigns colour at same index in colours array as in tetros array
     });
   }
   function undraw() {
     currentTetro.forEach((cell) => {
       squares[currentPosition + cell].classList.remove("tetromino");
+      squares[currentPosition + cell].style.backgroundColor = "";
     });
   }
 
@@ -213,9 +217,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function miniGridShape() {
     miniGridSquares.forEach((cell) => {
       cell.classList.remove("tetromino");
+      cell.style.backgroundColor = "";
     });
     upNextTetros[nextRandom].forEach((i) => {
       miniGridSquares[miniGridIndex + i].classList.add("tetromino");
+      miniGridSquares[miniGridIndex + i].style.backgroundColor =
+        colours[nextRandom];
     });
   }
 });

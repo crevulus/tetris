@@ -15,10 +15,6 @@
   width: 20px;
 }
 
-.tetromino {
-  background-color: rgb(37, 165, 37);
-}
-
 .mini-grid {
   display: flex;
   flex-wrap: wrap;
