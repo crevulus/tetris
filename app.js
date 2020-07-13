@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Choose a tetro at random and 1st rotation shape
   let random = Math.floor(Math.random() * tetros.length);
+  let nextRandom = 0;
   let currentTetro = tetros[random][currentRotation];
 
   function draw() {
@@ -81,10 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
         squares[currentPosition + cell].classList.add("stop")
       );
       // Triggers next tetro
-      random = Math.floor(Math.random() * tetros.length);
+      random = nextRandom;
+      nextRandom = Math.floor(Math.random() * tetros.length); // for unity with mini grid
       currentTetro = tetros[random][currentRotation];
       currentPosition = 4;
       draw();
+      miniGridShape();
     }
   }
 
@@ -142,5 +145,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     currentTetro = tetros[random][currentRotation];
     draw();
+  }
+
+  const miniGridSquares = document.querySelectorAll(".mini-grid div");
+  const miniGridWidth = 4;
+  let miniGridIndex = 0;
+
+  const upNextTetros = [
+    [1, miniGridWidth + 1, miniGridWidth * 2 + 1, miniGridWidth * 3 + 1],
+    [1, miniGridWidth + 1, miniGridWidth * 2 + 1, 2],
+    [0, 1, miniGridWidth, miniGridWidth + 1],
+    [1, miniGridWidth, miniGridWidth + 1, miniGridWidth + 2],
+    [
+      miniGridWidth + 1,
+      miniGridWidth + 2,
+      miniGridWidth * 2,
+      miniGridWidth * 2 + 1,
+    ],
+  ];
+
+  function miniGridShape() {
+    miniGridSquares.forEach((cell) => {
+      cell.classList.remove("tetromino");
+    });
+    upNextTetros[nextRandom].forEach((i) => {
+      miniGridSquares[miniGridIndex + i].classList.add("tetromino");
+    });
   }
 });
