@@ -40,6 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function gameOver() {
+    if (
+      currentTetro.some((cell) =>
+        squares[currentPosition + cell].classList.contains("stop")
+      )
+    ) {
+      scoreDisplay.innerHTML = "Game Over";
+      clearInterval(timerId);
+    }
+  }
+
   // Tetrominoes. Contains an array of arrays. Each inner array points to indexes. indexes combined = shape of tetro.
   const iTetro = [
     [1, width + 1, width * 2 + 1, width * 3 + 1],
@@ -102,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPosition += width; // Adds 10 to index, thus moving it down one line
     draw();
     stopTetro();
-    addScore();
   }
 
   function stopTetro() {
@@ -122,6 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
       currentPosition = 4;
       draw();
       miniGridShape();
+      addScore();
+      gameOver();
     }
   }
 
