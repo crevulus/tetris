@@ -4,6 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const startPause = document.querySelector("#start-pause");
   const width = 10;
+  let timerId;
+
+  startPause.addEventListener("click", () => {
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    } else {
+      draw();
+      timerId = setInterval(moveDown, 500);
+      nextRandom = Math.floor(Math.random() * tetros.length);
+      displayShape();
+    }
+  });
 
   // Tetrominoes. Contains an array of arrays. Each inner array points to indexes. indexes combined = shape of tetro.
   const iTetro = [
@@ -61,8 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[currentPosition + cell].classList.remove("tetromino");
     });
   }
-
-  timerId = setInterval(moveDown, 500);
 
   function moveDown() {
     undraw();
