@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const startPause = document.querySelector("#start-pause");
   const width = 10;
-  const height = 20;
 
   //tetrominoes
   const iTetro = [
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  timerId = setInterval(moveDown, 200);
+  timerId = setInterval(moveDown, 500);
   function moveDown() {
     undraw();
     currentPosition += width;
@@ -76,13 +75,56 @@ document.addEventListener("DOMContentLoaded", () => {
         squares[currentPosition + cell + width].classList.contains("stop")
       )
     ) {
-      currentTetro.forEach((index) =>
-        squares[currentPosition + index].classList.add("stop")
+      currentTetro.forEach((cell) =>
+        squares[currentPosition + cell].classList.add("stop")
       );
       random = Math.floor(Math.random() * tetros.length);
       currentTetro = tetros[random][currentRotation];
       currentPosition = 4;
       draw();
     }
+  }
+  function control(event) {
+    if (event.keyCode === 37) {
+      moveLeft();
+    } else if (event.keyCode === 38) {
+      // rotate
+    } else if (event.keyCode === 39) {
+      moveRight();
+    } else if (event.keyCode === 40) {
+      moveDown();
+    }
+  }
+  document.addEventListener("keyup", control);
+
+  function moveLeft() {
+    undraw();
+    const isAtLeftEdge = currentTetro.some(
+      (cell) => (currentPosition + cell) % width === 0
+    );
+    if (!isAtLeftEdge) currentPosition -= 1;
+    if (
+      currentTetro.some((cell) =>
+        squares[currentPosition + cell].classList.contains("stop")
+      )
+    ) {
+      currentPosition += 1;
+    }
+    draw();
+  }
+  function moveRight() {
+    undraw();
+    const isAtRightEdge = currentTetro.some(
+      (cell) => (currentPosition + cell) % width === width - 1
+    );
+    if (!isAtRightEdge) currentPosition += 1;
+    if (
+      currentTetro.some((cell) =>
+        squares[currentPosition + cell].classList.contains("stop")
+      )
+    ) {
+      currentPosition -= 1;
+    }
+    draw();
   }
 });

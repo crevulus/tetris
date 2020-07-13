@@ -1,5 +1,5 @@
 Following tutorial for beginners
 
-#Changes to make:
+# Changes to make:
 
 - Make grid dynamically using JS
