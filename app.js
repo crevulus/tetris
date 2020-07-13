@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const startPause = document.querySelector("#start-pause");
   const width = 10;
   let timerId;
+  let score = 0;
+  scoreDisplay.innerHTML = score;
 
   startPause.addEventListener("click", () => {
     if (timerId) {
@@ -14,9 +16,29 @@ document.addEventListener("DOMContentLoaded", () => {
       draw();
       timerId = setInterval(moveDown, 500);
       nextRandom = Math.floor(Math.random() * tetros.length);
-      displayShape();
+      miniGridShape();
     }
   });
+
+  function addScore() {
+    for (i = 0; i < 199; i += width) {
+      const row = [];
+      for (j = 0; j < 10; j += 1) {
+        row.push(i + j);
+      }
+      if (row.every((cell) => squares[cell].classList.contains("stop"))) {
+        score += 10;
+        scoreDisplay.innerHTML = score;
+        row.forEach((cell) => {
+          squares[cell].classList.remove("stop");
+          squares[cell].classList.remove("tetromino");
+        });
+        const rowRemoved = squares.splice(i, width);
+        squares = rowRemoved.concat(squares);
+        squares.forEach((square) => grid.appendChild(square));
+      }
+    }
+  }
 
   // Tetrominoes. Contains an array of arrays. Each inner array points to indexes. indexes combined = shape of tetro.
   const iTetro = [
@@ -80,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPosition += width; // Adds 10 to index, thus moving it down one line
     draw();
     stopTetro();
+    addScore();
   }
 
   function stopTetro() {
