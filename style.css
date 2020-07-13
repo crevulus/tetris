@@ -1,0 +1,13 @@
+.grid {
+  display: flex;
+  width: 200px;
+  height: 400px;
+  flex-wrap: wrap;
+  background-color: red;
+}
+
+.grid div {
+  height: 20px;
+  width: 20px;
+  background-color: aqua;
+}
