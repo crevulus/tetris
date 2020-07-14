@@ -1,8 +1,8 @@
-![Full Screen](screenshots/Screenshot 2020-07-14 at 18.11.29.png?raw=true "Full Screen")
+![Full Screen](screenshots/fullScreen.png?raw=true "Full Screen")
 
-![Half Screen](screenshots/Screenshot 2020-07-14 at 18.11.54.png?raw=true "Half Screen")
+![Half Screen](screenshots/halfScreen.png?raw=true "Half Screen")
 
-![Mobile](screenshots/Screenshot 2020-07-14 at 18.14.17.png?raw=true "Mobile")
+![Mobile](mobile.png?raw=true "Mobile")
 
 # Changes to make:
 
