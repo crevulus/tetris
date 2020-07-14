@@ -2,7 +2,7 @@
 
 ![Half Screen](screenshots/halfScreen.png?raw=true "Half Screen")
 
-![Mobile](mobile.png?raw=true "Mobile")
+![Mobile](screenshots/mobile.png?raw=true "Mobile")
 
 # Changes to make:
 
