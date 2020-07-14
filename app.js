@@ -11,11 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   let squares = Array.from(document.querySelectorAll(".grid div")); // makes and ARRAY FROM w/e
   const scoreDisplay = document.querySelector("#score");
+  const levelDisplay = document.querySelector("#level");
   const startPause = document.querySelector("#start-pause");
   const width = 10;
   let timerId;
   let score = 0;
   scoreDisplay.innerHTML = score;
+  let level = 1;
+  levelDisplay.innerHTML = level;
   const colours = ["orange", "red", "blue", "green", "yellow"];
 
   startPause.addEventListener("click", () => {
@@ -24,13 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
       timerId = null;
     } else {
       draw();
-      timerId = setInterval(moveDown, 500);
+      timerId = setInterval(moveDown, (6 - level) * 100);
       nextRandom = Math.floor(Math.random() * tetros.length);
       miniGridShape();
     }
   });
 
   function addScore() {
+    // Calculating what is a row
     for (i = 0; i < 199; i += width) {
       const row = [];
       for (j = 0; j < 10; j += 1) {
@@ -38,7 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (row.every((cell) => squares[cell].classList.contains("stop"))) {
         score += 10;
+        level += 1;
         scoreDisplay.innerHTML = score;
+        levelDisplay.innerHTML = level;
         row.forEach((cell) => {
           squares[cell].classList.remove("stop");
           squares[cell].classList.remove("tetromino");
@@ -206,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
   }
 
+  // mini grid
   const miniGridSquares = document.querySelectorAll(".mini-grid div");
   const miniGridWidth = 4;
   let miniGridIndex = 0;
