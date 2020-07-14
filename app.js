@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".grid");
+  for (i = 0; i < 200; i++) {
+    const cell = document.createElement("div");
+    grid.appendChild(cell);
+  }
+  for (i = 0; i < 10; i++) {
+    const cell = document.createElement("div");
+    cell.className = "stop";
+    grid.appendChild(cell);
+  }
   let squares = Array.from(document.querySelectorAll(".grid div")); // makes and ARRAY FROM w/e
   const scoreDisplay = document.querySelector("#score");
   const startPause = document.querySelector("#start-pause");
