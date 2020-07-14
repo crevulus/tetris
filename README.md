@@ -2,6 +2,7 @@
 
 - [x] Make grid dynamically using JS
 - [ ] Add borders to tetros without messing with grid/cell size
-- [ ] Fix top line not appearing
+- [x] Fix shape appearing before lines disappear
 - [ ] Fix rotating through edge of grid
-- [ ] Levels
+- [ ] Level increase -> speed increase
+- [ ] Start -> Pause -> Start -> Pause

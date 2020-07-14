@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   scoreDisplay.innerHTML = score;
   let level = 1;
   levelDisplay.innerHTML = level;
-  const colours = ["orange", "red", "blue", "green", "yellow"];
+  const colours = ["#EB7D64", "#BC802B", "#798308", "#0C7F28", "#007455"];
 
   var interval = (6 - level) * 100;
 
@@ -153,10 +153,10 @@ document.addEventListener("DOMContentLoaded", () => {
       nextRandom = Math.floor(Math.random() * tetros.length); // for unity with mini grid
       currentTetro = tetros[random][currentRotation];
       currentPosition = 4;
-      draw();
       miniGridShape();
       addScore();
       gameOver();
+      draw();
     }
   }
 
@@ -164,15 +164,19 @@ document.addEventListener("DOMContentLoaded", () => {
   function control(event) {
     if (event.keyCode === 37) {
       moveLeft();
+      event.preventDefault();
     } else if (event.keyCode === 38) {
       rotate();
+      event.preventDefault();
     } else if (event.keyCode === 39) {
       moveRight();
+      event.preventDefault();
     } else if (event.keyCode === 40) {
       moveDown();
+      event.preventDefault();
     }
   }
-  document.addEventListener("keyup", control);
+  document.addEventListener("keydown", control);
 
   function moveLeft() {
     undraw();

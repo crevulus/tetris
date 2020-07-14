@@ -1,4 +1,21 @@
-.container {
+body {
+  background: url(assets/Tetris_-_NES_-_Logo.svg) right bottom no-repeat;
+  background-size: 130px;
+  background-color: #2f4858;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+#score-level-start {
+  display: flex;
+  align-items: center;
+  width: auto;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.game-container {
   display: flex;
 }
 
@@ -7,7 +24,8 @@
   flex-wrap: wrap;
   width: 200px;
   height: 400px;
-  background-color: purple;
+  background-image: url("assets/grid_02.jpg");
+  border-radius: 3px;
 }
 
 .grid div {
@@ -21,7 +39,8 @@
   width: 80px;
   height: 80px;
   margin-left: 50px;
-  background-color: purple;
+  background-image: url("assets/grid_02.jpg");
+  border-radius: 3px;
 }
 
 .mini-grid div {
@@ -30,4 +49,65 @@
 }
 
 .tetromino {
+  border-radius: 3px;
+}
+
+button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 0;
+}
+
+button:hover {
+  background-color: rgb(77, 145, 80);
+  cursor: pointer;
+}
+
+@media all and (min-width: 430px) {
+  body {
+    background: url(assets/Tetris_-_NES_-_Logo.svg) right bottom no-repeat;
+    background-size: 220px;
+    background-color: #2f4858;
+  }
+
+  #score-level-start {
+    width: 330px;
+  }
+}
+
+@media all and (min-width: 640px) {
+  body {
+    background: url(assets/Tetris_-_NES_-_Logo.svg) center no-repeat;
+    background-color: #2f4858;
+  }
+
+  #score-level-start {
+    width: 400px;
+  }
+
+  .grid {
+    width: 400px;
+    height: 800px;
+  }
+
+  .grid div {
+    height: 40px;
+    width: 40px;
+  }
+
+  .mini-grid {
+    width: 160px;
+    height: 160px;
+  }
+
+  .mini-grid div {
+    height: 40px;
+    width: 40px;
+  }
 }
