@@ -21,13 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
   levelDisplay.innerHTML = level;
   const colours = ["orange", "red", "blue", "green", "yellow"];
 
+  var interval = (6 - level) * 100;
+
   startPause.addEventListener("click", () => {
     if (timerId) {
+      console.log("clear interval " + timerId);
       clearInterval(timerId);
       timerId = null;
     } else {
       draw();
-      timerId = setInterval(moveDown, (6 - level) * 100);
+      console.log("set interval " + interval);
+      timerId = setInterval(moveDown, 500);
       nextRandom = Math.floor(Math.random() * tetros.length);
       miniGridShape();
     }
@@ -209,6 +213,13 @@ document.addEventListener("DOMContentLoaded", () => {
       currentRotation = 0;
     }
     currentTetro = tetros[random][currentRotation];
+    if (
+      currentTetro.some((cell) =>
+        squares[currentPosition + cell + width].classList.contains("stop")
+      )
+    ) {
+      return;
+    }
     draw();
   }
 
